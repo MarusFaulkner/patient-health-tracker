@@ -1,92 +1,118 @@
-Perfect! You're now editing the README.md file. I can see the empty editor with "Enter file contents here" placeholder.
-Copy and paste this entire professional README content:
-markdown# 🏥 Patient Health Tracker
+# Patient Health Monitoring Dashboard
 
-A professional web-based patient health monitoring system with real-time vital signs tracking and clinical alert system.
+A redesigned healthcare information-systems portfolio project demonstrating **synthetic patient record management, vital-sign data capture, dashboard analytics, rule-based alerts, front-end data visualization, and security-aware application design**.
 
-## 🌟 Live Demo
-[View Live Application](https://marusfaulkner.github.io/patient-health-tracker/)
+**Live demo:** `https://marusfaulkner.github.io/patient-health-tracker/`
 
-## ✨ Features
+> **Important:** This is an educational portfolio project using fictional/synthetic data. It is **not** a medical device, electronic health record, diagnostic system, or clinical decision-support tool. Do not enter real patient or protected health information (PHI).
 
-### 📊 Dashboard Analytics
-- Real-time patient statistics
-- Health trend visualization with Chart.js
-- Critical alerts monitoring
-- Average vital signs calculation
+## Why I rebuilt this project
 
-### 👥 Patient Management
-- Add and manage patient records
-- Search and filter functionality
-- Patient information tracking
-- Secure data storage
+The original version proved the core concept: patient records, vital-sign entry, Chart.js visualization, browser storage, and alert logic. Version 2 refactors that idea into a cleaner information-systems project with stronger documentation and more explicit security/privacy boundaries.
 
-### 🩺 Vital Signs Monitoring
-- **Heart Rate**: Bradycardia/Tachycardia detection
-- **Blood Pressure**: Hypertensive crisis alerts
-- **Temperature**: Fever/Hypothermia monitoring
-- Real-time clinical validation
+### V2 improvements
 
-### 🚨 Clinical Alert System
-- Automatic abnormal reading detection
-- Color-coded status indicators (Normal/Warning/Critical)
-- Clinical reference ranges display
-- Historical alert tracking
+- Modern healthcare operations dashboard
+- Responsive desktop/mobile interface
+- Separated HTML, CSS, and JavaScript
+- Synthetic demo dataset
+- Searchable patient records
+- Vital-sign observation workflow
+- Chart.js trend visualization
+- Rule-based demonstration flags
+- Safer DOM rendering for user-entered patient data
+- Clear localStorage limitations
+- Security/privacy documentation and threat-model notes
+- No claims of HIPAA compliance, medical-grade operation, or clinical suitability
 
-## 🏥 Clinical Standards
+## Information Systems Concepts Demonstrated
 
-The application follows established medical guidelines:
-- **Heart Rate**: Normal 60-100 bpm
-- **Blood Pressure**: Normal <120/80 mmHg
-- **Temperature**: Normal 97.0-99.5°F
+| Area | Demonstration |
+|---|---|
+| Data capture | Structured patient and observation forms |
+| Data management | Client-side record persistence and relationships |
+| Validation | Required fields, input ranges, unique demo IDs |
+| Analytics | Counts, averages, recent flags, time-series chart |
+| Workflow | Patient → observation → dashboard feedback |
+| UI/UX | Responsive navigation, dashboard cards, forms, status states |
+| Security awareness | Synthetic data boundary, safer rendering, documented production controls |
 
-## 🛠️ Technical Stack
+## Security-Conscious Refactor
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Charts**: Chart.js for data visualization
-- **Storage**: Browser LocalStorage
-- **Design**: Responsive CSS Grid/Flexbox
-- **Deployment**: GitHub Pages
+The original application rendered several dynamic values by building HTML strings. V2 uses DOM APIs and `textContent` for user-controlled patient values to reduce the risk of client-side HTML/script injection.
 
-## 💼 Professional Highlights
+This does **not** make the application suitable for sensitive health information. The current version intentionally uses browser `localStorage` for a simple portfolio demo. A production healthcare application would need a secure backend, authentication, authorization, encryption, audit logging, session controls, secure APIs, data-governance policies, testing, and formal legal/compliance review.
 
-- Clean, medical-grade user interface
-- HIPAA-aware design considerations
-- Scalable architecture
-- Mobile-responsive design
-- Real-time data validation
-- Professional error handling
+See [`docs/SECURITY.md`](docs/SECURITY.md).
 
-## 🚀 Quick Start
+## Demo Alert Logic
 
-1. Clone the repository
-2. Open `index.html` in your browser
-3. Start adding patients and recording vitals
-4. View analytics on the dashboard
+The application contains intentionally simplified thresholds to demonstrate conditional logic and UI alert states. They are **not medical guidance** and should not be used for diagnosis, treatment, triage, or clinical decision-making.
 
-## 🎯 Use Cases
+## Tech Stack
 
-- Medical clinics and hospitals
-- Remote patient monitoring
-- Health data collection
-- Clinical research
-- Telemedicine platforms
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Chart.js 4
+- Browser Web Storage (`localStorage`)
+- GitHub Pages
 
-## 📈 Future Enhancements
+## Project Structure
 
-- [ ] Multi-user authentication
-- [ ] Database integration
-- [ ] FHIR compliance
-- [ ] Mobile app version
-- [ ] Advanced analytics
-- [ ] PDF report generation
+```text
+patient-health-tracker/
+├── index.html
+├── assets/
+│   ├── app.js
+│   └── styles.css
+├── docs/
+│   ├── ARCHITECTURE.md
+│   └── SECURITY.md
+├── PROJECT-INFO.md
+├── README.md
+├── LICENSE
+└── .gitignore
+```
 
-## 👨‍💻 Developer
+## Run Locally
+
+No build process is required.
+
+1. Clone or download the repository.
+2. Open `index.html` in a modern browser.
+3. Use the included synthetic records or add fictional demo records.
+4. Record synthetic observations and review dashboard updates.
+
+An internet connection is required to load Chart.js from the CDN.
+
+## Portfolio Positioning
+
+This project connects three areas of professional interest:
+
+**Healthcare / Medical Device Experience + Information Systems + Cybersecurity Awareness**
+
+It is intended to demonstrate how operational data can be captured, organized, visualized, and reviewed while recognizing the security and privacy requirements that would be necessary in a real healthcare environment.
+
+## Future Roadmap
+
+- Backend API and database
+- Role-based access control
+- Authentication and secure session management
+- Audit logging
+- Automated tests
+- Content Security Policy
+- Dependency integrity controls
+- Standards-based interoperability research (e.g., FHIR)
+- Accessibility testing
+- Exportable synthetic reports
+
+## Author
 
 **Marcus Faulkner**  
-Healthcare Technology Specialist  
-[Portfolio Website](https://marusfaulkner.github.io/marcus-faulkner.github.io/)
+Information Systems / Cybersecurity & Quality Professional  
+Portfolio: `https://marusfaulkner.github.io/marcus-faulkner.github.io/`
 
----
+## License
 
-*Built with modern web technologies and medical industry best practices.*
+MIT License. See [`LICENSE`](LICENSE).
