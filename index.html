@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Synthetic patient health monitoring dashboard demonstrating healthcare information systems, front-end analytics, and security-aware design.">
   <title>Patient Health Monitoring Dashboard | Marcus Faulkner</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
   <link rel="stylesheet" href="assets/styles.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script defer src="assets/app.js"></script>
 </head>
 <body>
@@ -56,7 +56,7 @@
         <div class="dashboard-grid">
           <article class="panel chart-panel">
             <div class="panel-head"><div><h2>Heart-rate trend</h2><p>Average recorded heart rate by date</p></div><span class="legend-dot">Synthetic</span></div>
-            <div class="chart-wrap"><canvas id="healthChart" aria-label="Heart rate trend chart"></canvas></div>
+            <div class="chart-wrap" id="healthChart"></div>
           </article>
           <article class="panel">
             <div class="panel-head"><div><h2>Recent flags</h2><p>Rule-based demonstration alerts</p></div></div>
@@ -112,6 +112,8 @@
           <article class="panel"><span class="icon">02</span><h2>Safer rendering</h2><p>User-entered values are rendered with DOM text nodes rather than injected as raw HTML.</p></article>
           <article class="panel"><span class="icon">03</span><h2>Local storage limitation</h2><p>Browser localStorage is used for demonstration convenience. It is not appropriate storage for sensitive clinical information.</p></article>
           <article class="panel"><span class="icon">04</span><h2>Production roadmap</h2><p>A real system would require authenticated access, authorization, encrypted transport/storage, audit logging, secure APIs, retention controls, and formal compliance review.</p></article>
+          <article class="panel"><span class="icon">05</span><h2>Hardened front end</h2><p>A strict Content Security Policy allows scripts and styles only from this site. There is no third-party JavaScript; the chart is drawn with SVG. Stored records are validated before use.</p></article>
+          <article class="panel"><span class="icon">06</span><h2>FHIR R4 export</h2><p>Each synthetic patient can be exported as a FHIR R4 Bundle: vital-sign Observations coded with LOINC and UCUM, every resource tagged HTEST (test health data).</p></article>
         </div>
         <article class="panel architecture">
           <h2>Conceptual architecture</h2>

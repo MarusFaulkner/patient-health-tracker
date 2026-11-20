@@ -14,12 +14,12 @@
 │ validation • workflow • DOM   │
 └───────────────┬───────────────┘
                 │
-       ┌────────┴────────┐
-       v                 v
-┌──────────────┐  ┌──────────────┐
-│ localStorage │  │   Chart.js   │
-│ demo records │  │ visualization│
-└──────────────┘  └──────────────┘
+       ┌────────────────┼────────────────┐
+       v                v                v
+┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+│ localStorage │ │  SVG chart   │ │ FHIR R4      │
+│ demo records │ │ (no library) │ │ JSON export  │
+└──────────────┘ └──────────────┘ └──────────────┘
 ```
 
 ## Data Model
@@ -47,6 +47,19 @@
 - `flags`
 
 `patientId` creates the relationship between a patient record and its observations.
+
+`date` is the local calendar date (`YYYY-MM-DD`) and `time` is local 24-hour `HH:MM`, so `date + time` sorts chronologically. `flags` are always recomputed from the vital-sign values.
+
+## FHIR Mapping
+
+| App field | FHIR R4 |
+|---|---|
+| Patient `demoId`, name, `dob` | `Patient.identifier`, `Patient.name`, `Patient.birthDate` |
+| `heartRate` | `Observation` LOINC 8867-4, `valueQuantity` UCUM `/min` |
+| `temperature` | `Observation` LOINC 8310-5, `valueQuantity` UCUM `[degF]` |
+| `systolic` / `diastolic` | `Observation` LOINC 85354-9, components 8480-6 / 8462-4, UCUM `mm[Hg]` |
+| `date` + `time` | `Observation.effectiveDateTime` with the local UTC offset |
+| `notes` | `Observation.note` |
 
 ## Production Evolution
 

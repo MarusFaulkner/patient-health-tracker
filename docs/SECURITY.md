@@ -17,22 +17,30 @@ Additional controls include:
 - explicit synthetic-data labeling;
 - no external transmission of patient records by application code.
 
+## Improvements in V2.1
+
+- **Content Security Policy** (`script-src 'self'`, `style-src 'self'`, `connect-src 'none'`, `object-src 'none'`, `form-action 'none'`).
+- **No third-party JavaScript.** Chart.js was removed; the trend chart is drawn with SVG by the project's own code.
+- **Validated storage reads.** Records loaded from `localStorage` are type- and range-checked; invalid records are dropped and demo flags are recomputed rather than trusted.
+- **Delete with confirmation** supports data minimization for the demo dataset.
+- **FHIR export labeling.** Exported resources carry the `HTEST` (test health data) security label.
+
 ## Known Limitations
 
 `localStorage` is readable by JavaScript running in the same origin and provides no application-level encryption, user authentication, authorization, audit trail, or server-side access control. It is used here only because it makes the educational demo easy to run.
 
-The application loads Chart.js from a public CDN. A production design would require a dependency-management and integrity strategy.
+The application loads no third-party code. A production design would still need a dependency-management and integrity strategy for any libraries it adopts.
 
 ## Simplified Threat Model
 
 | Risk | Current Demo Treatment | Production Direction |
 |---|---|---|
-| Script/HTML injection | Text-node rendering for user-controlled display values | Output encoding, CSP, framework controls, testing |
+| Script/HTML injection | Text-node rendering + Content Security Policy | Output encoding, CSP, framework controls, testing |
 | Unauthorized access | Not addressed; single-browser demo | Authentication + RBAC/ABAC |
 | Sensitive data exposure | Synthetic-data-only rule | Encryption, secure storage, data minimization |
-| Data tampering | Local validation only | Server validation, authorization, integrity controls |
+| Data tampering | Input validation + validation of stored records; flags recomputed | Server validation, authorization, integrity controls |
 | Accountability | No audit log | Immutable/security-reviewed audit logging |
-| Dependency risk | CDN-hosted Chart.js | Locked dependencies, SRI/build pipeline, monitoring |
+| Dependency risk | No third-party scripts | Locked dependencies, SRI/build pipeline, monitoring |
 | Availability | Static GitHub Pages | Resilient hosted architecture, backup/recovery |
 
 ## Production Healthcare Considerations

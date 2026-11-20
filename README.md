@@ -2,7 +2,7 @@
 
 A redesigned healthcare information-systems portfolio project demonstrating **synthetic patient record management, vital-sign data capture, dashboard analytics, rule-based alerts, front-end data visualization, and security-aware application design**.
 
-**Live demo:** `https://marusfaulkner.github.io/patient-health-tracker/`
+**Live demo:** [Launch the dashboard](https://marusfaulkner.github.io/patient-health-tracker/)
 
 > **Important:** This is an educational portfolio project using fictional/synthetic data. It is **not** a medical device, electronic health record, diagnostic system, or clinical decision-support tool. Do not enter real patient or protected health information (PHI).
 
@@ -25,6 +25,29 @@ The original version proved the core concept: patient records, vital-sign entry,
 - Security/privacy documentation and threat-model notes
 - No claims of HIPAA compliance, medical-grade operation, or clinical suitability
 
+### V2.1 updates
+
+- **FHIR R4 export:** download any synthetic patient as a FHIR Bundle (Patient + vital-sign Observations coded with LOINC and UCUM)
+- **No third-party JavaScript:** the trend chart is hand-built SVG, so Chart.js and its CDN dependency are gone
+- **Content Security Policy:** scripts and styles load only from this site; no network connections allowed
+- **Validated storage:** records read from `localStorage` are checked before use, and demo flags are recomputed rather than trusted
+- **Delete patient** (with confirmation), removing the patient's observations too
+- **Bug fixes:** observations now use the local date (not UTC) and 24-hour times, so "latest" ordering is correct; date of birth can't be in the future
+- Patient and observation notes are now displayed
+
+## FHIR R4 Export
+
+Each patient card has an **Export FHIR** button that downloads a `Bundle` (type `collection`) containing:
+
+| Resource | Coding |
+|---|---|
+| `Patient` | demo ID as identifier, name, birth date |
+| Heart rate `Observation` | LOINC 8867-4, UCUM `/min`, profile `heartrate` |
+| Body temperature `Observation` | LOINC 8310-5, UCUM `[degF]`, profile `bodytemp` |
+| Blood pressure `Observation` | LOINC 85354-9 with components 8480-6 (systolic) and 8462-4 (diastolic), UCUM `mm[Hg]`, profile `bp` |
+
+Every resource carries the security label **HTEST** (*test health data*) so the export can't be mistaken for real clinical data. The export demonstrates standards-based interoperability concepts; it has not been validated against a FHIR server or certified for any use.
+
 ## Information Systems Concepts Demonstrated
 
 | Area | Demonstration |
@@ -35,7 +58,8 @@ The original version proved the core concept: patient records, vital-sign entry,
 | Analytics | Counts, averages, recent flags, time-series chart |
 | Workflow | Patient → observation → dashboard feedback |
 | UI/UX | Responsive navigation, dashboard cards, forms, status states |
-| Security awareness | Synthetic data boundary, safer rendering, documented production controls |
+| Interoperability | FHIR R4 export with LOINC/UCUM coding |
+| Security awareness | Synthetic data boundary, safer rendering, CSP, no third-party scripts, documented production controls |
 
 ## Security-Conscious Refactor
 
@@ -53,8 +77,9 @@ The application contains intentionally simplified thresholds to demonstrate cond
 
 - HTML5
 - CSS3
-- JavaScript (ES6+)
-- Chart.js 4
+- JavaScript (ES6+, no frameworks or third-party scripts)
+- SVG (hand-built chart)
+- HL7 FHIR R4 (export format)
 - Browser Web Storage (`localStorage`)
 - GitHub Pages
 
@@ -84,7 +109,7 @@ No build process is required.
 3. Use the included synthetic records or add fictional demo records.
 4. Record synthetic observations and review dashboard updates.
 
-An internet connection is required to load Chart.js from the CDN.
+No internet connection or third-party scripts are required.
 
 ## Portfolio Positioning
 
@@ -101,9 +126,7 @@ It is intended to demonstrate how operational data can be captured, organized, v
 - Authentication and secure session management
 - Audit logging
 - Automated tests
-- Content Security Policy
-- Dependency integrity controls
-- Standards-based interoperability research (e.g., FHIR)
+- FHIR import and validation against the FHIR R4 vital-signs profiles
 - Accessibility testing
 - Exportable synthetic reports
 
@@ -111,7 +134,7 @@ It is intended to demonstrate how operational data can be captured, organized, v
 
 **Marcus Faulkner**  
 Information Systems / Cybersecurity & Quality Professional  
-Portfolio: `https://marusfaulkner.github.io/marcus-faulkner.github.io/`
+Portfolio: [marusfaulkner.github.io](https://marusfaulkner.github.io)
 
 ## License
 
